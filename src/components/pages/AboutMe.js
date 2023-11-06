@@ -4,7 +4,7 @@ const AboutMe = () => {
   return (
     <div className='about-me'>
       <div className='page-content'>
-        <h3 className='text-center mb-5'>BIO</h3>
+        <h4 className='text-center mb-5'>BIO</h4>
         <div className='row mt-4'>
           <div className='col-md-6'>
             <img src='/images/about-me.png' className='img-fluid' />

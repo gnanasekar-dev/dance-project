@@ -207,3 +207,10 @@ footer p {
     margin-left: 6px;
   }
 }
+
+
+.brochure .each-program p {
+  color: rgb(169, 169, 169) !important;
+  line-height: 1.5;
+  font-size: 20px;
+}
