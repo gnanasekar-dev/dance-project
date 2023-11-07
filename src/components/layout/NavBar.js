@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
@@ -8,6 +8,10 @@ import {
   Nav,
   NavItem,
   NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap';
 
 // Render public/guests links
@@ -20,7 +24,7 @@ const renderNavbarGuestLinks = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink tag={RRNavLink} to='/' activeClassName='active'>
+        <NavLink tag={RRNavLink} to='/about-me' activeClassName='active'>
           About Me
         </NavLink>
       </NavItem>
@@ -34,6 +38,24 @@ const renderNavbarGuestLinks = () => {
           Brochure
         </NavLink>
       </NavItem>
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
+          More
+        </DropdownToggle>
+        <DropdownMenu left>
+          <DropdownItem>
+            <NavLink tag={RRNavLink} to='/guru' activeClassName='active'>
+              Guru
+            </NavLink>
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>
+            <NavLink tag={RRNavLink} to='/projects' activeClassName='active'>
+              Projects
+            </NavLink>
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
     </Nav>
   );
 };
@@ -45,8 +67,24 @@ const NavBar = () => {
     setIsOpen(!isOpen);
   };
 
+  const [navbar, setNavbar] = useState(false);
+
+  const changeBackground = () => {
+    if (window.scrollY >= 66) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  useEffect(() => {
+    changeBackground();
+    // adding the event when scroll change background
+    window.addEventListener('scroll', changeBackground);
+  });
+
   return (
-    <Navbar expand='md'>
+    <Navbar expand='md' className={navbar ? "navbar-custom-scroll" : "navbar-custom-still"}>
       <div className='row w-100'>
         <div className='col-3'>
           <h3 className='font-greate-vibes-regular mt-2'>
